@@ -21,6 +21,7 @@ namespace CBA.Training.Talmate.Api
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    
                 });
     }
 }

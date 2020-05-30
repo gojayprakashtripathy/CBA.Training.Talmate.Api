@@ -2,7 +2,8 @@
 
 namespace CBA.Training.Talmate.Common
 {
-    public class Class1
+    public class AppSettings
     {
+        public string Secret { get; set; }
     }
 }
