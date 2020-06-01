@@ -22,6 +22,7 @@ namespace CBA.Training.Talmate.Api
                 {
                     webBuilder.UseStartup<Startup>();
                     
+
                 });
     }
 }

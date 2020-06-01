@@ -13,6 +13,12 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Microsoft.EntityFrameworkCore;
+using CBA.Training.Talmate.Repository;
+using AutoMapper;
+using CBA.Training.Talmate.Services.DemandService;
+using System.Collections.Generic;
+using CBA.Training.Talmate.Api.Filter;
 
 namespace CBA.Training.Talmate.Api
 {
@@ -56,12 +62,26 @@ namespace CBA.Training.Talmate.Api
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IDemandService, DemandService>();
 
 
             services.AddSwaggerGen(c => 
             { 
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" }); 
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "CBA.Training.Talmate.Api", Version = "v1" });
+                c.OperationFilter<AuthorizeCheckOperationFilter>();
+                //c.EnableAnnotations();
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Scheme = "Bearer",
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n Enter 'Bearer' [space] and then your token in the text input below.\r\n\r\nExample: 'Bearer 12345abcdef'"
+                });
             });
+
+            services.AddDbContext<TalmateDbContext>(item => item.UseSqlServer(Configuration.GetConnectionString("DbConnection")));
+            services.AddAutoMapper(typeof(Startup));
 
         }
 
@@ -75,12 +95,18 @@ namespace CBA.Training.Talmate.Api
             app.UseSwagger();
             app.UseSwaggerUI(c=>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CBA.Training.Talmate.Api");               
             });
             app.UseHttpsRedirection();
 
-            app.UseRouting();
+            app.UseRouting();            
 
+            app.UseCors(x => x
+               .AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader());
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using CBA.Training.Talmate.Services.UserService;
 using CBA.Training.Talmate.Models;
+using AutoMapper;
+using CBA.Training.Talmate.EntityModels;
 
 namespace CBA.Training.Talmate.Api.Controllers
 {
@@ -15,39 +17,43 @@ namespace CBA.Training.Talmate.Api.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IUserService _userService;
+        private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IMapper mapper)
         {
             _userService = userService;
+            _mapper = mapper;
         }
 
         [AllowAnonymous]
         [HttpPost("/token")]
-        public IActionResult Authenticate([FromBody] AuthenticateModel model)
+        public async Task<IActionResult> Authenticate([FromBody] UserDTO model)
         {
-            var user = _userService.Authenticate(model.Username, model.Password);
 
-            if (user == null)
+            var result = await _userService.Authenticate(model.Username, model.Password);
+
+            if (result == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
 
-            return Ok(user);
+            return Ok(result);
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        [Authorize(Roles = "PM")]
+        public async Task<IActionResult> GetAll()
         {
-            var users = _userService.GetAll();
+            var users = await _userService.GetAll();
             return Ok(users);
         }
 
         [HttpGet]
-        [AllowAnonymous]
-        [Route("test")]
-        public IActionResult Test()
+        [Authorize(Roles = "PM")]
+        [Route("id")]
+        public async Task<IActionResult> Get(int Id)
         {
-            
-            return Ok("Hello");
+            var users = await _userService.GetById(Id);
+            return Ok(users);
         }
 
     }
