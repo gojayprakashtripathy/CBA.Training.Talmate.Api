@@ -19,6 +19,8 @@ using AutoMapper;
 using CBA.Training.Talmate.Services.DemandService;
 using System.Collections.Generic;
 using CBA.Training.Talmate.Api.Filter;
+using CBA.Training.Talmate.Api.ExceptionHandling;
+using CBA.Training.Talmate.Services.LoggerService;
 
 namespace CBA.Training.Talmate.Api
 {
@@ -36,6 +38,9 @@ namespace CBA.Training.Talmate.Api
         {
             services.AddCors();
             services.AddControllers();
+            services.AddMvc(config => {config.Filters.Add(typeof(CustomExceptionHandler));
+        }
+    );
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
@@ -63,6 +68,7 @@ namespace CBA.Training.Talmate.Api
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IDemandService, DemandService>();
+            services.AddScoped<ILoggerService, LoggerService>();
 
 
             services.AddSwaggerGen(c => 
@@ -90,7 +96,7 @@ namespace CBA.Training.Talmate.Api
         {
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();                
             }
             app.UseSwagger();
             app.UseSwaggerUI(c=>

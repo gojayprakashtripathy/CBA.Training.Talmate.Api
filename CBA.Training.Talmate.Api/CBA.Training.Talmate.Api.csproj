@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CBA.Training.Talmate.Common\CBA.Training.Talmate.Common.csproj" />
     <ProjectReference Include="..\CBA.Training.Talmate.Repository\CBA.Training.Talmate.Repository.csproj" />
     <ProjectReference Include="..\CBA.Training.Talmate.Services\CBA.Training.Talmate.Services.csproj" />
   </ItemGroup>

@@ -56,5 +56,15 @@ namespace CBA.Training.Talmate.Api.Controllers
             return Ok(users);
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("test")]
+        public IActionResult Test()
+        {
+            string test = null;
+            var result = test.ToString();
+            return Ok(result);
+        }
+
     }
 }

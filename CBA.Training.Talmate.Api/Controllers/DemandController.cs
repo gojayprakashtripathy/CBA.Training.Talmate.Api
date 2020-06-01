@@ -46,8 +46,7 @@ namespace CBA.Training.Talmate.Api.Controllers
             {
                 return BadRequest();
             }
-
-            //var demand = _mapper.Map<Demand>(demandDTO);
+            
             var response = await _demandService.Post(demand);
             return Ok(response);
         }
