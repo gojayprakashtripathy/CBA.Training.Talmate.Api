@@ -38,9 +38,14 @@ namespace CBA.Training.Talmate.Api
         {
             services.AddCors();
             services.AddControllers();
-            services.AddMvc(config => {config.Filters.Add(typeof(CustomExceptionHandler));
-        }
-    );
+            services.AddScoped<TalmateActionFilterAttribute>();
+            services.AddControllers().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+
+            services.AddMvc(config =>
+            {
+                config.Filters.Add(typeof(CustomExceptionHandler));
+                //config.Filters.Add(typeof(TalmateActionFilterAttribute));
+            });
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);

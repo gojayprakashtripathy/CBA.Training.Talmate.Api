@@ -8,5 +8,6 @@ namespace CBA.Training.Talmate.Services.LoggerService
     public interface ILoggerService
     {
         Task<bool> WriteErrorToFile(string text);
+        Task<bool> WriteActionExecutionToFile(string text);
     }
 }

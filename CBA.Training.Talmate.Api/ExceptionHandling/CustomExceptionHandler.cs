@@ -15,9 +15,12 @@ namespace CBA.Training.Talmate.Api.ExceptionHandling
             _logger = logger;
         }
         public override void OnException(ExceptionContext context)
-        {            
-            Exception ex = context.Exception;
-            _logger.WriteErrorToFile(ex.Message.ToString());
+        {
+            var controllerName = context.RouteData.Values["controller"];
+            var actionName = context.RouteData.Values["action"];
+            var exceptionMessage = context.Exception.Message;
+            var message = "Controller : " + controllerName + ", Action : " + actionName + ", " + exceptionMessage;
+            _logger.WriteErrorToFile(message.ToString());
         }
     }
 }

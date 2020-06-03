@@ -9,11 +9,13 @@ using CBA.Training.Talmate.EntityModels;
 using CBA.Training.Talmate.Models;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using CBA.Training.Talmate.Api.Filter;
 
 namespace CBA.Training.Talmate.Api.Controllers
 {
     [Route("api/demand")]
     [ApiController]
+    [ServiceFilter(typeof(TalmateActionFilterAttribute))]
     public class DemandController : ControllerBase
     {
         private readonly IDemandService _demandService;

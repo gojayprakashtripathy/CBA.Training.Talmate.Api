@@ -9,12 +9,14 @@ using CBA.Training.Talmate.Services.UserService;
 using CBA.Training.Talmate.Models;
 using AutoMapper;
 using CBA.Training.Talmate.EntityModels;
+using CBA.Training.Talmate.Api.Filter;
 
 namespace CBA.Training.Talmate.Api.Controllers
 {
     [Authorize]
     [Route("api/user")]
-    [ApiController]
+    [ApiController]    
+    [ServiceFilter(typeof(TalmateActionFilterAttribute))]
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
