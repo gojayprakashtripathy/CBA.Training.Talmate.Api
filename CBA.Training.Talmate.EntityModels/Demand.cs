@@ -6,8 +6,7 @@ namespace CBA.Training.Talmate.EntityModels
 {
     public class Demand
     {
-        [Key]
-        [JsonIgnore]
+        [Key]        
         public int DemandId { get; set; }
         public string PrimarySkills { get; set; }
         public string SecondarySkills { get; set; }

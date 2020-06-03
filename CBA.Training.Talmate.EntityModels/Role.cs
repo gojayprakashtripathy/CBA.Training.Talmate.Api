@@ -10,6 +10,7 @@ namespace CBA.Training.Talmate.EntityModels
     {
         [Key]
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
     }
 }
