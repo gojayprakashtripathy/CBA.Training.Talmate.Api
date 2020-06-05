@@ -30,9 +30,12 @@ namespace CBA.Training.Talmate.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost("/token")]
-        public async Task<IActionResult> Authenticate([FromBody] UserDTO model)
+        public async Task<IActionResult> Authenticate([FromBody] User model)
         {
-
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
             var result = await _userService.Authenticate(model.Username, model.Password);
 
             if (result == null)
@@ -57,16 +60,5 @@ namespace CBA.Training.Talmate.Api.Controllers
             var users = await _userService.GetById(Id);
             return Ok(users);
         }
-
-        [HttpGet]
-        [AllowAnonymous]
-        [Route("test")]
-        public IActionResult Test()
-        {
-            string test = null;
-            var result = test.ToString();
-            return Ok(result);
-        }
-
     }
 }
