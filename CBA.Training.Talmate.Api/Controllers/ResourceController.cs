@@ -14,7 +14,7 @@ namespace CBA.Training.Talmate.Api.Controllers
     [Route("api/resource")]
     [ApiController]
     [ServiceFilter(typeof(TalmateActionFilterAttribute))]
-    public class ResourceController : Controller
+    public class ResourceController : ControllerBase
     {
 
 
@@ -28,6 +28,7 @@ namespace CBA.Training.Talmate.Api.Controllers
         }
         [HttpGet]
         [Authorize(Roles = "BM")]
+        //[Authorize(Roles = "PM")]
         public async Task<IActionResult> Get()
         {
             if (!ModelState.IsValid)
@@ -39,8 +40,8 @@ namespace CBA.Training.Talmate.Api.Controllers
             return Ok(response);
         }
         [HttpPost]
-        [Authorize(Roles = "PM")]
-        public async Task<IActionResult> Post(ResourceDetail resource)
+        [Authorize(Roles = "BM")]
+        public async Task<IActionResult> Post(ResourceShortlisted resource)
         {
             if (!ModelState.IsValid)
             {

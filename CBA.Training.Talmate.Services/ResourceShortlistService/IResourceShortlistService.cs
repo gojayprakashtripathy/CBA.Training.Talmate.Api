@@ -13,8 +13,5 @@ namespace CBA.Training.Talmate.Services.ResourceShortlistService
    public class IResourceShortlistService
     {
         
-      //Task<IQueryable<ResourceShortlisted>> Get();
-        //Task<IQueryable<ResourceShortlisted>> Insert();
-        //   Task<bool> Post(ResourceShortlisted ResourceList);
     }
 }

@@ -10,7 +10,7 @@ namespace CBA.Training.Talmate.Services.ResourceDetailsservice
     public interface IResourceDetailsService
     {
         Task<IQueryable<ResourceDetail>> Get();
-        Task<bool> Post(ResourceDetail resource);
+        Task<bool> Post(ResourceShortlisted resource);
         Task<ResourceDetail> GetById(int id);
     }
 }

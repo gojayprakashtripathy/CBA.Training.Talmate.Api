@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CBA.Training.Talmate.Services.ResourceDetailsservice
 {
-    class ResourceDetailsservice : IResourceDetailsService
+  public  class ResourceDetailsservice : IResourceDetailsService
     {
         private readonly TalmateDbContext _talmateDbContext;
         public ResourceDetailsservice(TalmateDbContext talmateDbContext)
@@ -26,11 +26,11 @@ namespace CBA.Training.Talmate.Services.ResourceDetailsservice
             var resource = _talmateDbContext.ResourceDetails.AsQueryable().FirstOrDefault(x => x.Id == id);
             return await Task.FromResult(resource);
         }
-        public async Task<bool> Post(ResourceDetail resource)
+        public async Task<bool> Post(ResourceShortlisted resource)
         {
             if (resource != null)
             {
-                _talmateDbContext.ResourceDetails.Add(resource);
+                _talmateDbContext.ResourceShortlist.Add(resource);
                 var result = _talmateDbContext.SaveChanges();
                 if (result > 0)
                     return await Task.FromResult(true);
@@ -38,5 +38,12 @@ namespace CBA.Training.Talmate.Services.ResourceDetailsservice
 
             return await Task.FromResult(false);
         }
+
+
+
+
+
+
+
     }
 }

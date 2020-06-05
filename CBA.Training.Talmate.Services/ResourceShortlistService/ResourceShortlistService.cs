@@ -15,27 +15,8 @@ namespace CBA.Training.Talmate.Services.ResourceShortlistService
         {
             _DbContext = talmateDbContext;
         }
-        //public async Task<IQueryable<ResourceShortlistService>> GetResource()
-        //{
-        //    var resource = _DbContext.ResourceShortlist.AsQueryable().OrderBy(c => c.PrimarySkills);
-        //    return await Task.FromResult(resource);
+        
 
 
-        //}
-
-        //public async Task<bool> Post(ResourceShortlistService resourceShortlist)
-        //{
-        //    if (resourceShortlist != null)
-        //    {
-        //        _talmateDbContext.Demands.Add(resourceShortlist);
-        //        var result = _talmateDbContext.SaveChanges();
-        //        if (result > 0)
-        //            return await Task.FromResult(true);
-        //    }
-
-        //    return await Task.FromResult(false);
-        //}
-    
-
-}
+    }
 }

@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using CBA.Training.Talmate.Api.Filter;
 using CBA.Training.Talmate.Api.ExceptionHandling;
 using CBA.Training.Talmate.Services.LoggerService;
+using CBA.Training.Talmate.Services.ResourceDetailsservice;
 
 namespace CBA.Training.Talmate.Api
 {
@@ -74,6 +75,7 @@ namespace CBA.Training.Talmate.Api
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IDemandService, DemandService>();
             services.AddScoped<ILoggerService, LoggerService>();
+            services.AddScoped<IResourceDetailsService, ResourceDetailsservice>();
 
 
             services.AddSwaggerGen(c => 
