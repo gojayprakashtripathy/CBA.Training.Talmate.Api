@@ -8,10 +8,15 @@ namespace CBA.Training.Talmate.EntityModels
     {
         [Key]        
         public int DemandId { get; set; }
+        [Required]
         public string PrimarySkills { get; set; }
+        [Required]
         public string SecondarySkills { get; set; }
+        [Required]
         public string Location { get; set; }
+        [Required]
         public DateTime? Start_By_Date { get; set; }
+        [Required]
         public int Experience { get; set; }
     }
 }

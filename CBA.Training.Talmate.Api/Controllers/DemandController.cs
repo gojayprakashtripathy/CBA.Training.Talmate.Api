@@ -42,7 +42,7 @@ namespace CBA.Training.Talmate.Api.Controllers
         
         [HttpPost]
         [Authorize(Roles = "PM")]
-        public async Task<IActionResult> Post(Demand demand)
+        public async Task<IActionResult> Post([FromBody]Demand demand)
         {
             if (!ModelState.IsValid)
             {

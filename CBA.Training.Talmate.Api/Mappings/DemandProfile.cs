@@ -13,6 +13,7 @@ namespace CBA.Training.Talmate.Api.Mappings
         public DemandProfile()
         {
             CreateMap<User, UserDTO>();
+            CreateMap<Demand, DemandDTO>();
         }
     }
 }
