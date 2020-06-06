@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CBA.Training.Talmate.EntityModels
 {
-   public class ResourceShortlisted
+   public class Recommendation
     {
         [Key]
         public int Id { get; set; }
@@ -15,8 +15,8 @@ namespace CBA.Training.Talmate.EntityModels
         public string SecondarySkills { get; set; }
         public string Location { get; set; }
         public int Experience { get; set; }
-
-        public bool TrainingRecommendation { get; set; }
+        public bool IsActive { get; set; }
+        public bool IsRecommendedForTraining { get; set; }
 
     }
 }

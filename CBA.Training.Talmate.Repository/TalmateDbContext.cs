@@ -15,7 +15,7 @@ namespace CBA.Training.Talmate.Repository
         public DbSet<ResourceDetail> ResourceDetails { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
-        public DbSet<ResourceShortlisted> ResourceShortlist { get; set; }
+        public DbSet<Recommendation> Recommendations { get; set; }
 
     }
 }

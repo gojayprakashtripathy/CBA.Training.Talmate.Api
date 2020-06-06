@@ -30,7 +30,7 @@ namespace CBA.Training.Talmate.Api.UnitTests
         public async Task Authenticate_UserCredentialsIsCorrect_ReturnsToken()
         {
             _mockUserRepository.Setup(x => x.Authenticate("abc","abc")).ReturnsAsync( new UserRolesDTO());
-            var result = await _controller.Authenticate(new User { Username = "abc", Password = "abc" });
+            var result = await _controller.Authenticate(new UserDTO { Username = "abc", Password = "abc" });
 
             // Assert
             Assert.Pass();
@@ -45,7 +45,7 @@ namespace CBA.Training.Talmate.Api.UnitTests
             // Act
             _mockUserRepository.Setup(x => x.Authenticate("", "")).ReturnsAsync(new UserRolesDTO());
               
-            var result = await _controller.Authenticate(new User());
+            var result = await _controller.Authenticate(new UserDTO());
 
             // Assert
             Assert.Pass();

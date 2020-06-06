@@ -30,13 +30,13 @@ namespace CBA.Training.Talmate.Api.Controllers
 
         [AllowAnonymous]
         [HttpPost("/token")]
-        public async Task<IActionResult> Authenticate([FromBody] User model)
+        public async Task<IActionResult> Authenticate([FromBody] UserDTO user)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
-            var result = await _userService.Authenticate(model.Username, model.Password);
+            var result = await _userService.Authenticate(user.Username, user.Password);
 
             if (result == null)
                 return BadRequest(new { message = "Username or password is incorrect" });

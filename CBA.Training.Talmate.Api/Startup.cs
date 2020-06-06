@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using CBA.Training.Talmate.Api.Filter;
 using CBA.Training.Talmate.Api.ExceptionHandling;
 using CBA.Training.Talmate.Services.LoggerService;
+using CBA.Training.Talmate.Services.RecommendationService;
 
 namespace CBA.Training.Talmate.Api
 {
@@ -43,8 +44,7 @@ namespace CBA.Training.Talmate.Api
 
             services.AddMvc(config =>
             {
-                config.Filters.Add(typeof(CustomExceptionHandler));
-                //config.Filters.Add(typeof(TalmateActionFilterAttribute));
+                config.Filters.Add(typeof(CustomExceptionHandler));                
             });
 
             var appSettingsSection = Configuration.GetSection("AppSettings");
@@ -74,6 +74,7 @@ namespace CBA.Training.Talmate.Api
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IDemandService, DemandService>();
             services.AddScoped<ILoggerService, LoggerService>();
+            services.AddScoped<IRecommendationService, RecommendationService>();
 
 
             services.AddSwaggerGen(c => 
