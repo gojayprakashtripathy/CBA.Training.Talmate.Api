@@ -10,7 +10,7 @@ namespace CBA.Training.Talmate.Services.RecommendationService
     public interface IRecommendationService
     {        
         Task<IQueryable<ResourceDetail>> Seek();
-        Task<bool> RouteToPM(Recommendation recommendation);
+        Task<bool> RouteToPM(List<Recommendation> recommendation);
         Task<IQueryable<Recommendation>> Get();
         Task<bool> Accept(int Id);
         Task<bool> Reject(int Id);

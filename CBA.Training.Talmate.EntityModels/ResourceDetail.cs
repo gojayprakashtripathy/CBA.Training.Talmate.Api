@@ -14,5 +14,6 @@ namespace CBA.Training.Talmate.EntityModels
         public string SecondarySkills { get; set; }
         public string Location { get; set; }        
         public int Experience { get; set; }
+        public bool? IsRecommendedForTraining { get; set; }
     }
 }

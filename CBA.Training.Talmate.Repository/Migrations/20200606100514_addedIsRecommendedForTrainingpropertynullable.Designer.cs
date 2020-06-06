@@ -4,14 +4,16 @@ using CBA.Training.Talmate.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CBA.Training.Talmate.Repository.Migrations
 {
     [DbContext(typeof(TalmateDbContext))]
-    partial class TalmateDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200606100514_addedIsRecommendedForTrainingpropertynullable")]
+    partial class addedIsRecommendedForTrainingpropertynullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,7 +68,7 @@ namespace CBA.Training.Talmate.Repository.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
-                    b.Property<bool?>("IsEnrolledForTraining")
+                    b.Property<bool?>("IsRecommendedForTraining")
                         .HasColumnType("bit");
 
                     b.Property<string>("LastName")
@@ -98,9 +100,6 @@ namespace CBA.Training.Talmate.Repository.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool?>("IsRecommendedForTraining")
-                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");

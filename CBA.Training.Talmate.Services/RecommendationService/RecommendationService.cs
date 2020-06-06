@@ -25,11 +25,14 @@ namespace CBA.Training.Talmate.Services.RecommendationService
 
         }
 
-        public async Task<bool> RouteToPM(Recommendation recommendation)
+        public async Task<bool> RouteToPM(List<Recommendation> recommendation)
         {
             if (recommendation != null)
             {
-                _talmateDbContext.Recommendations.Add(recommendation);
+                foreach (var item in recommendation)
+                {
+                    _talmateDbContext.Recommendations.Add(item);
+                }               
                 var result = _talmateDbContext.SaveChanges();
                 if (result > 0)
                     return await Task.FromResult(true);
@@ -40,7 +43,7 @@ namespace CBA.Training.Talmate.Services.RecommendationService
 
         public async Task<IQueryable<Recommendation>> Get()
         {
-            var recommendation = _talmateDbContext.Recommendations.Where(x => x.IsActive == true).AsQueryable().OrderBy(c => c.PrimarySkills);
+            var recommendation = _talmateDbContext.Recommendations.Where(x => x.IsActive == true && x.IsEnrolledForTraining == null).AsQueryable().OrderBy(c => c.PrimarySkills);
             return await Task.FromResult(recommendation);
 
 
@@ -54,7 +57,7 @@ namespace CBA.Training.Talmate.Services.RecommendationService
                 var recommedation = _talmateDbContext.Recommendations.Where(x => x.Id == Id).FirstOrDefault();
                 if (recommedation != null)
                 {
-                    recommedation.IsRecommendedForTraining = true;
+                    recommedation.IsEnrolledForTraining = true;
                     _talmateDbContext.Entry(recommedation).State = EntityState.Modified;
                     result = _talmateDbContext.SaveChanges();
                 }
@@ -73,7 +76,7 @@ namespace CBA.Training.Talmate.Services.RecommendationService
                 var recommedation = _talmateDbContext.Recommendations.Where(x => x.Id == Id).FirstOrDefault();
                 if (recommedation != null)
                 {
-                    recommedation.IsRecommendedForTraining = false;
+                    recommedation.IsEnrolledForTraining = false;
                     _talmateDbContext.Entry(recommedation).State = EntityState.Modified;
                     result = _talmateDbContext.SaveChanges();
                 }

@@ -39,9 +39,9 @@ namespace CBA.Training.Talmate.Api.Controllers
             var response = await _recommendationService.Seek();
             return Ok(response);
         }
-        [HttpPost("routetopm")]
+        [HttpPost("routerecommendation")]
         [Authorize(Roles = "BM")]
-        public async Task<IActionResult> RouteToPM(Recommendation recommendation)
+        public async Task<IActionResult> RouteToPM([FromBody]List<Recommendation> recommendation)
         {
             if (!ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace CBA.Training.Talmate.Api.Controllers
         }
         [HttpPost("accept")]
         [Authorize(Roles = "PM")]
-        public async Task<IActionResult> Accept(int Id)
+        public async Task<IActionResult> Accept([FromBody]int Id)
         {
             if (!ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace CBA.Training.Talmate.Api.Controllers
 
         [HttpPost("reject")]
         [Authorize(Roles = "PM")]
-        public async Task<IActionResult> Reject(int Id)
+        public async Task<IActionResult> Reject([FromBody]int Id)
         {
             if (!ModelState.IsValid)
             {
